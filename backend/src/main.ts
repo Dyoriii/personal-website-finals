@@ -1,17 +1,20 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
+
   app.enableCors({
-    origin: '*',
+    origin: [
+      'https://personal-website-finals-1r56.vercel.app', // <-- your frontend domain
+      'http://localhost:5173',                           // optional for local testing
+    ],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: false, // set true only if you send cookies/Authorization across origins
   });
-  
-  app.useGlobalPipes(new ValidationPipe());
-  
-  await app.listen(3000);
-  console.log(`Application is running on: http://localhost:3000`);
+
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
