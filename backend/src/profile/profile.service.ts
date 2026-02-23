@@ -10,10 +10,9 @@ export class ProfileService {
       .getClient()
       .from('profiles')
       .select('*')
-      .limit(1)
-      .single();
+      .limit(1);
 
     if (error) throw new Error(error.message);
-    return data;
+    return data && data.length > 0 ? data[0] : null;
   }
 }
