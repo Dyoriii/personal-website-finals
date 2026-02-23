@@ -23,7 +23,7 @@ export class CommentsService {
       .getClient()
       .from('comments')
       .insert([createCommentDto])
-      .select();
+      .select('*');
 
     if (error) throw new Error(error.message);
     return data;
