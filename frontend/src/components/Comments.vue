@@ -38,7 +38,7 @@ onMounted(async () => {
 
 const loadComments = async () => {
   try {
-    const response = await profileAPI.getComments(props.profileId);
+    const response = await profileAPI.getComments();
     comments.value = response.data;
   } catch (error) {
     console.error('Failed to load comments:', error);

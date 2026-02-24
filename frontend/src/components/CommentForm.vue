@@ -63,10 +63,7 @@ const submitComment = async () => {
   loading.value = true;
 
   try {
-    const response = await profileAPI.createComment({
-      ...formData.value,
-      profile_id: props.profileId,
-    });
+    const response = await profileAPI.createComment(formData.value);
 
     emit('comment-added', response.data[0]);
     formData.value = { author_name: '', author_email: '', message: '' };

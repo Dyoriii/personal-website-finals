@@ -11,8 +11,4 @@ export class CreateCommentDto {
   @IsString()
   @IsNotEmpty()
   message: string;
-
-  @IsString()
-  @IsNotEmpty()
-  profile_id: string;
 }

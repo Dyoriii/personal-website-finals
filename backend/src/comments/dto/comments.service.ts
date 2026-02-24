@@ -6,13 +6,12 @@ import { CreateCommentDto } from './create-comment.dto';
 export class CommentsService {
   constructor(private supabaseService: SupabaseService) {}
 
-  async findAll(profileId: string) {
+  async findAll() {
     try {
       const { data, error } = await this.supabaseService
         .getClient()
-        .from('comments')
+        .from('guestbook_entries')
         .select('*')
-        .eq('profile_id', profileId)
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -30,7 +29,7 @@ export class CommentsService {
     try {
       const { data, error } = await this.supabaseService
         .getClient()
-        .from('comments')
+        .from('guestbook_entries')
         .insert([createCommentDto])
         .select('*');
 
@@ -49,7 +48,7 @@ export class CommentsService {
     try {
       const { data, error } = await this.supabaseService
         .getClient()
-        .from('comments')
+        .from('guestbook_entries')
         .delete()
         .eq('id', id)
         .select();

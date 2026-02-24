@@ -15,8 +15,8 @@ export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
   @Get()
-  findAll(@Query('profile_id') profileId: string) {
-    return this.commentsService.findAll(profileId);
+  findAll() {
+    return this.commentsService.findAll();
   }
 
   @Post()
