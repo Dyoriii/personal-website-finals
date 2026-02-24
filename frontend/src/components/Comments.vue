@@ -47,17 +47,6 @@ const addComment = (newComment: any) => {
   comments.value.unshift(newComment);
 };
 
-const deleteComment = async (id: number) => {
-  if (!confirm('Delete this comment?')) return;
-
-  try {
-    await profileAPI.deleteComment(id);
-    comments.value = comments.value.filter(c => c.id !== id);
-  } catch (error) {
-    console.error('Failed to delete comment:', error);
-  }
-};
-
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString('en-US', {
     month: 'short',
