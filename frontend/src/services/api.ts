@@ -10,7 +10,6 @@ export const profileAPI = {
   getProfile: () => api.get('/profile'),
   getComments: () => api.get('/comments'),
   createComment: (data: any) => api.post('/comments', data),
-  deleteComment: (id: number) => api.delete(`/comments/${id}`),
 };
 
 export default api;
